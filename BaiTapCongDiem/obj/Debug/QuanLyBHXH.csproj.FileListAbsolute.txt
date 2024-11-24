@@ -1,0 +1,7 @@
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\bin\Debug\BaiTapCongDiem.exe.config
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\bin\Debug\BaiTapCongDiem.exe
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\bin\Debug\BaiTapCongDiem.pdb
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\obj\Debug\QuanLyBHXH.csproj.AssemblyReference.cache
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\obj\Debug\QuanLyBHXH.csproj.CoreCompileInputs.cache
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\obj\Debug\BaiTapCongDiem.exe
+C:\Users\PC\OneDrive\Desktop\ST3\BaiTapCongDiem\BaiTapCongDiem\obj\Debug\BaiTapCongDiem.pdb
