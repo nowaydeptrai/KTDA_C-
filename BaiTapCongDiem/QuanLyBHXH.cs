@@ -24,7 +24,14 @@ namespace QuanLyBHXH
             Console.Write("Nhap gioi tinh (Nam/Nu): ");
             nld.GioiTinh = Console.ReadLine();
             Console.Write("Nhap ngay sinh (dd/MM/yyyy): ");
-            nld.NgaySinh = DateTime.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
+            DateTime ngaySinh;
+            while (!DateTime.TryParseExact(input, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out ngaySinh))
+            {
+                Console.WriteLine("Ngay sinh khong hop le! Vui long nhap lai (dd/MM/yyyy): ");
+                input = Console.ReadLine();
+            }
+            nld.NgaySinh = ngaySinh;
 
             danhSach.Add(nld);
             Console.WriteLine("Them moi nguoi lao dong thanh cong!");
@@ -43,17 +50,45 @@ namespace QuanLyBHXH
             }
 
             Console.Write("Nhap so giai doan K: ");
-            int k = int.Parse(Console.ReadLine());
+            int k;
+            while (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine("So giai doan K phai la so nguyen duong. Vui long nhap lai: ");
+            }
 
             for (int i = 0; i < k; i++)
             {
                 var giaiDoan = new GiaiDoanDongBHXH();
-                Console.Write($"Giai doan {i + 1} - Tu (Thang/Nam): ");
-                giaiDoan.TuThangNam = Console.ReadLine();
-                Console.Write($"Giai doan {i + 1} - Den (Thang/Nam): ");
-                giaiDoan.DenThangNam = Console.ReadLine();
+
+                Console.Write($"Giai doan {i + 1} - Tu (Thang/Nam, MM/yyyy): ");
+                while (true)
+                {
+                    giaiDoan.TuThangNam = Console.ReadLine();
+                    if (DateTime.TryParseExact(giaiDoan.TuThangNam, "MM/yyyy", null, System.Globalization.DateTimeStyles.None, out _))
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Nhap sai dinh dang. Vui long nhap lai (MM/yyyy): ");
+                }
+
+                Console.Write($"Giai doan {i + 1} - Den (Thang/Nam, MM/yyyy): ");
+                while (true)
+                {
+                    giaiDoan.DenThangNam = Console.ReadLine();
+                    if (DateTime.TryParseExact(giaiDoan.DenThangNam, "MM/yyyy", null, System.Globalization.DateTimeStyles.None, out _))
+                    {
+                        break;
+                    }
+                    Console.WriteLine("Nhap sai dinh dang. Vui long nhap lai (MM/yyyy): ");
+                }
+
                 Console.Write($"Giai doan {i + 1} - Muc luong: ");
-                giaiDoan.MucLuong = double.Parse(Console.ReadLine());
+                double mucLuong;
+                while (!double.TryParse(Console.ReadLine(), out mucLuong) || mucLuong <= 0)
+                {
+                    Console.WriteLine("Muc luong phai la so duong. Vui long nhap lai: ");
+                }
+                giaiDoan.MucLuong = mucLuong;
 
                 if (nld.CacGiaiDoanDong.Any(g =>
                     g.TuThangNam == giaiDoan.TuThangNam && g.DenThangNam == giaiDoan.DenThangNam))
@@ -91,10 +126,11 @@ namespace QuanLyBHXH
 
         public void TinhTienBHXH1Lan()
         {
+            Console.WriteLine("\n--- Tinh tien BHXH 1 lan ---");
             foreach (var nld in danhSach)
             {
-                double tongTien = nld.CacGiaiDoanDong.Sum(gd => gd.MucLuong * 0.75);
-                Console.WriteLine($"Ho ten: {nld.HoTen}, Tien BHXH 1 lan: {tongTien:N0}");
+                double tienBHXH = nld.TinhTienBHXH1Lan();
+                Console.WriteLine($"Ho ten: {nld.HoTen}, Tien BHXH 1 lan: {tienBHXH:N0}");
             }
         }
     }
